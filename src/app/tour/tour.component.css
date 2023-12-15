@@ -1,0 +1,111 @@
+* {
+    color: #ececec;
+}
+
+.grid-container {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #142d4c;
+    overflow-y: scroll;
+}
+
+.tourImage {
+    height: 20vh;
+    width: 300px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.images {
+    width: 897px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    padding-top: 30px;
+}
+
+.date {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.input {
+    border-radius: 10px;
+    border: 0px;
+    padding: 5px;
+    color: #142d4c;
+    margin-right: 5px;
+}
+
+.button {
+    border-radius: 20px;
+    border: 0px;
+    font-weight: bold;
+    background-color: #9fd3c7;
+    padding: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: #142d4c;
+    cursor: pointer;
+}
+
+.smallButton {
+    border-radius: 20px;
+    border: 0px;
+    font-weight: bold;
+    background-color: #9fd3c7;
+    padding: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: #142d4c;
+    cursor: pointer;
+}
+
+.button:hover,
+.smallButton:hover {
+    transition: 0.5s;
+    background-color: #385170;
+    color: #ececec;
+}
+
+.reservation {
+    margin-top: 10px;
+    display: flex;
+}
+
+.pricing {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.bottom {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: xx-large;
+}
+
+.oui {
+    color: green;
+}
+
+.non {
+    color: red;
+}
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #9fd3c7;
+    border-radius: 6px;
+}

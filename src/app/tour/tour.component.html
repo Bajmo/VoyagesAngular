@@ -1,0 +1,69 @@
+<div class="grid-container">
+    <div class="tour-item">
+        <h2>{{ tour.name }}</h2>
+        <hr>
+        <div class="images">
+            <img *ngFor="let image of tour.images" [src]="image" alt="Tour Image" class="tourImage">
+        </div>
+        <hr>
+        <p><b>Destination</b> - {{ tour.destination }}</p>
+        <p><b>Departure</b> - {{ tour.departure }}</p>
+        <p><b>Villes</b> - {{ tour.cities.join(', ') }}</p>
+        <p><b>Durée du voyage</b> - {{ tour.duration }} jours</p>
+        <p><b>Places disponibles</b> - {{ tour.places }}</p>
+        <p><b>Logement</b> - {{ tour.chamber }}</p>
+        <p><b>Repas offerts</b> - <span [ngClass]="tour.dining ? 'oui' : 'non'">{{ tour.dining ? 'Oui' : 'Non' }}</span>
+        </p>
+        <p><b>Prix initial</b> - {{ tour.initialPrice }} DHS</p>
+
+        <hr>
+        <div class="buttons">
+            <button *ngIf="!tour.dining" (click)="addDining()" class="button">Ajouter les repas offerts</button>
+            <button *ngIf="tour.dining" (click)="removeDining()" class="button">Enlever les repas offerts</button>
+            <button *ngIf="tour.chamber !== chamberStyle.Normal" (click)="setChamber(chamberStyle.Normal)"
+                class="button">Logement 3 étoiles</button>
+            <button *ngIf="tour.chamber === chamberStyle.Normal || tour.chamber === chamberStyle.Five"
+                (click)="setChamber(chamberStyle.Four)" class="button">Logement 4 étoiles</button>
+            <button *ngIf="tour.chamber === chamberStyle.Four || tour.chamber === chamberStyle.Normal"
+                (click)="setChamber(chamberStyle.Five)" class="button">Logement 5 étoiles</button>
+        </div>
+        <hr>
+
+        <label for="placesToReserve">
+            <p>Réserver :</p>
+        </label>
+        <div class="reservation">
+            <div class="reservation-controls">
+                <button (click)="incrementPlaces()" class="smallButton">+</button>
+                <input class="input" type="number" id="placesToReserve" [(ngModel)]="placesToReserve" min="1"
+                    max="{{ tour.places }}" />
+                <button (click)="decrementPlaces()" class="smallButton">-</button>
+                <p *ngIf="tour.places === 0">Désolé, toutes les places sont réservées.</p>
+            </div>
+        </div>
+        <label for="startDate">
+            <p>Date de départ :</p>
+        </label>
+        <div>
+            <div *ngFor="let date of tour.possibleDates">
+                <input class="date" type="radio" id="startDate" name="startDate" [value]="formatDate(date)"
+                    (click)="setDepartureDate(date)" [disabled]="isPastDate(date)" />
+                <label>{{ formatDate(date) }}</label>
+            </div>
+        </div>
+
+        <div class="bottom">
+            <div class="pricing">
+                <span>Prix total</span>
+                <span class="price">
+                    <b>{{ price }} DHS</b>
+                </span>
+            </div>
+            <button *ngIf="tour.places > 0 && departureDateSet" (click)="openPopup()"
+                class="smallButton">Réserver</button>
+            <p *ngIf="!areAllDatesPast() && tour.places > 0 && !departureDateSet">Veuillez choisir une date de départ
+            </p>
+            <p *ngIf="areAllDatesPast()">Ce voyage a été clôturé.</p>
+        </div>
+    </div>
+</div>
